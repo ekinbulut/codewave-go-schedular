@@ -14,19 +14,18 @@ type App struct {
 
 func (a *App) Run() {
 
-	// create a schedular
-	schedular := svc.NewSchedular()
-	schedular.AddJob(&models.Job{
-		Name: "Job 1",
-	})
-
-	schedular.AddJob(&models.Job{
-		Name: "Job 2",
-	})
-
-	schedular.Run()
-
 	fmt.Printf("%s %s\n", a.Name, a.Version)
+
+	// create a schedular
+	schedular := svc.NewSchedular(5)
+
+	// create a job
+	job := NewJob("job1", func(c chan string) {
+		c <- "executed"
+	})
+
+	schedular.AddJob(job)
+	schedular.Run()
 }
 
 func main() {
@@ -36,4 +35,13 @@ func main() {
 	}
 
 	app.Run()
+}
+
+// create a job
+func NewJob(name string, f func(c chan string)) *models.Job {
+	m := &models.Job{
+		Name: name,
+	}
+	m.Append(f)
+	return m
 }
