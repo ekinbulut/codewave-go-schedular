@@ -45,5 +45,9 @@ func (s *Schedular) BackgroundTicker() {
 			go job.Execute()
 		}
 	}
+}
 
+// return schedular size
+func (s *Schedular) Size() int {
+	return len(s.Jobs)
 }
