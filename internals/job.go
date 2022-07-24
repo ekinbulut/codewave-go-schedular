@@ -1,4 +1,4 @@
-package models
+package schedular
 
 import "fmt"
 

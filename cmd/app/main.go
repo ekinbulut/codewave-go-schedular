@@ -3,8 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/ekinbulut/go-schedular/svc"
-	"github.com/ekinbulut/go-schedular/svc/models"
+	"github.com/ekinbulut/go-schedular/internals"
 )
 
 type App struct {

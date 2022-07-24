@@ -1,10 +1,10 @@
-package svc
+package schedular
 
 import (
 	"fmt"
 	"time"
 
-	"github.com/ekinbulut/go-schedular/svc/models"
+	models "github.com/ekinbulut/go-schedular/internals"
 )
 
 type Schedular struct {
