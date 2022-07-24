@@ -3,24 +3,22 @@ package schedular
 import (
 	"fmt"
 	"time"
-
-	models "github.com/ekinbulut/go-schedular/internals"
 )
 
 type Schedular struct {
-	Jobs   []*models.Job
+	Jobs   []*Job
 	ticker *time.Ticker
 }
 
 func NewSchedular(second int) *Schedular {
 	return &Schedular{
-		Jobs:   make([]*models.Job, 0),
+		Jobs:   make([]*Job, 0),
 		ticker: time.NewTicker(time.Duration(second) * time.Second),
 	}
 }
 
 // AddJob adds a job to the schedular
-func (s *Schedular) AddJob(job *models.Job) {
+func (s *Schedular) AddJob(job *Job) {
 	s.Jobs = append(s.Jobs, job)
 }
 

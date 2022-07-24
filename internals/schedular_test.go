@@ -3,17 +3,15 @@ package schedular
 import (
 	"testing"
 	"time"
-
-	"github.com/ekinbulut/go-schedular/svc/models"
 )
 
 func TestSchedular_AddJob(t *testing.T) {
 	type fields struct {
-		Jobs   []*models.Job
+		Jobs   []*Job
 		ticker *time.Ticker
 	}
 	type args struct {
-		job *models.Job
+		job *Job
 	}
 	tests := []struct {
 		name   string
@@ -25,7 +23,7 @@ func TestSchedular_AddJob(t *testing.T) {
 		{
 			name: "add job",
 			fields: fields{
-				Jobs:   make([]*models.Job, 0),
+				Jobs:   make([]*Job, 0),
 				ticker: time.NewTicker(time.Duration(5) * time.Second),
 			},
 			args: args{
@@ -50,8 +48,8 @@ func TestSchedular_AddJob(t *testing.T) {
 	}
 }
 
-func NewJob(name string, f func(c chan string)) *models.Job {
-	m := &models.Job{
+func NewJob(name string, f func(c chan string)) *Job {
+	m := &Job{
 		Name: name,
 	}
 	m.Append(f)
@@ -60,11 +58,11 @@ func NewJob(name string, f func(c chan string)) *models.Job {
 
 func TestSchedular_Size(t *testing.T) {
 	type fields struct {
-		Jobs   []*models.Job
+		Jobs   []*Job
 		ticker *time.Ticker
 	}
 	type args struct {
-		job *models.Job
+		job *Job
 	}
 	tests := []struct {
 		name   string
@@ -76,7 +74,7 @@ func TestSchedular_Size(t *testing.T) {
 		{
 			name: "size",
 			fields: fields{
-				Jobs:   make([]*models.Job, 0),
+				Jobs:   make([]*Job, 0),
 				ticker: time.NewTicker(time.Duration(5) * time.Second),
 			},
 			args: args{

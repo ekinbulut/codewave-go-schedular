@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/ekinbulut/go-schedular/internals"
+	schedular "github.com/ekinbulut/go-schedular/internals"
 )
 
 type App struct {
@@ -16,7 +16,7 @@ func (a *App) Run() {
 	fmt.Printf("%s %s\n", a.Name, a.Version)
 
 	// create a schedular
-	schedular := svc.NewSchedular(5)
+	schedular := schedular.NewSchedular(5)
 
 	// create a job
 	job := NewJob("job1", func(c chan string) {
@@ -37,8 +37,8 @@ func main() {
 }
 
 // create a job
-func NewJob(name string, f func(c chan string)) *models.Job {
-	m := &models.Job{
+func NewJob(name string, f func(c chan string)) *schedular.Job {
+	m := &schedular.Job{
 		Name: name,
 	}
 	m.Append(f)
